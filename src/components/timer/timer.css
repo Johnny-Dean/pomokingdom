@@ -1,0 +1,11 @@
+.timer-container{
+    display: flex;  
+    align-items: center;
+    flex-direction: column;
+}
+.timer-button-container{
+    margin-bottom: 15px;
+}
+.Button{
+    color: black;
+}

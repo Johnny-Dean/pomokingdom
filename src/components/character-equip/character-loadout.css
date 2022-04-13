@@ -1,0 +1,21 @@
+.ra-3x {
+    color: lightgrey
+}
+
+.loadout-container{
+    max-width: 200px;
+    max-height: 400px;
+}
+
+.item-container {
+    min-width: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 2px;
+}
+
+.item-row-container {
+    display: flex;
+    flex-direction: row;
+}
