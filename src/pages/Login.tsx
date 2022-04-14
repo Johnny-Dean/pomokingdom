@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router";
+import LoginForm from "../components/login/login-form";
 
 function Login(){
     const navigate = useNavigate();
@@ -9,7 +10,7 @@ function Login(){
     }
 
     return (
-        <button onClick={handleClick}>hey</button>
+        <LoginForm />
     )
 }
 
