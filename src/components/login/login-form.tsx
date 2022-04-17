@@ -1,9 +1,8 @@
 import { useState } from "react";
 import { Card } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { signIn } from "../../services/api-call";
-// const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
-// const initialState = { auth: 1, user_name: '', password: '', confirmPassword: '' };
+import { getCharacter, signIn } from "../../services/api-call";
+import { useCharacterUpdate } from "../../context/character_provider";
 
 export interface authform {
     auth: number,
@@ -20,7 +19,7 @@ function LoginForm(){
     
     const handleClick = () => { 
         signIn(form);
-        navigate('/timer') 
+        navigate('/timer');
     }
 
     

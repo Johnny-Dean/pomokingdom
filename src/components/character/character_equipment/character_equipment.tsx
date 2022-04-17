@@ -1,6 +1,6 @@
 import {Card} from '@mui/material';
 import 'rpg-awesome/css/rpg-awesome.css';
-import './character-loadout.css';
+import './character_equipment.css';
 interface Props {
     name?: string, 
     iconId?: string
@@ -14,7 +14,7 @@ export function ItemCard({name, iconId}: Props){
     )
 }
 
-function Loadout(){
+function CharacterEquipment(){
     return (
         <Card className='loadout-container'>
             <ItemCard name="Head" iconId="helmet" />
@@ -35,4 +35,4 @@ function Loadout(){
     )
 }
 
-export default Loadout;
+export default CharacterEquipment;
