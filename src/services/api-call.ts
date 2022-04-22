@@ -9,9 +9,12 @@ if (storedID) {
 
 export const signIn = (formdata: authform) => {
     return axios.put(BASE_URL, formdata).then(res => {
-        console.log(res);
         localStorage.setItem('id', JSON.stringify(res.data.result._id));
-    }).catch(err => console.log(err))
+        return {hasError: false}
+    }).catch(err => {
+        console.log(err);
+        return {hasError: true}
+    })
 }
 
 export const signUp = (formdata: authform) => {
@@ -19,6 +22,5 @@ export const signUp = (formdata: authform) => {
 }
 
 export const getCharacter = () => {
-    console.log(`${BASE_URL}/character?userId=${USER_ID}`);
-    axios.get(`${BASE_URL}/character?userId=${USER_ID}`).then(res => console.log(res))
+    return axios.get(`${BASE_URL}/character?userId=${USER_ID}`).then(res => res.data)
 }

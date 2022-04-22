@@ -17,9 +17,14 @@ function LoginForm(){
     const [signup, setSignup] = useState<boolean>(false);
     const handleChange = (e: any) => setForm({...form, [e.target.name]: e.target.value})
     
-    const handleClick = () => { 
-        signIn(form);
-        navigate('/timer');
+    const handleClick = () => {
+        let success;
+        signIn(form).then(res => {
+            console.log(res)
+            if (!res.hasError) navigate('/timer');
+            else alert("User does not exist.")
+        });
+        
     }
 
     
