@@ -1,18 +1,7 @@
 import {Card} from '@mui/material';
 import 'rpg-awesome/css/rpg-awesome.css';
 import './character_equipment.css';
-interface Props {
-    name?: string, 
-    iconId?: string
-}
-// generalize this for inventory and shop
-export function ItemCard({name, iconId}: Props){
-    return (
-        <Card className="item-container">
-            <i className={`ra ra-${iconId} ra-3x`}></i> 
-        </Card>
-    )
-}
+import ItemCard from '../../item/item_card';
 
 function CharacterEquipment(){
     return (

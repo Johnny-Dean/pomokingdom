@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { Card } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { getCharacter, signIn } from "../../services/api-call";
-import { useCharacterUpdate } from "../../context/character_provider";
+import API from "../../services/api-call";
 
 export interface authform {
     auth: number,
@@ -18,15 +17,20 @@ function LoginForm(){
     const handleChange = (e: any) => setForm({...form, [e.target.name]: e.target.value})
     
     const handleClick = () => {
-        let success;
-        signIn(form).then(res => {
-            console.log(res)
-            if (!res.hasError) navigate('/timer');
-            else alert("User does not exist.")
-        });
+        if (signup){
+            API.signUp(form).then((res: any) => {
+                if (!res.hasError) navigate('/timer');
+                else alert("User does not exist.")
+            });
+        }
+        else {
+            API.signIn(form).then((res: any) => {
+                if (!res.hasError) navigate('/timer');
+                else alert("User does not exist.")
+            });
+        }
         
     }
-
     
     if(!signup){
         return (
@@ -34,6 +38,7 @@ function LoginForm(){
                 <input name="user_name" onChange={handleChange} placeholder={'Username'}></input>
                 <input name="password" onChange={handleChange} placeholder={'Password'}></input>
                 <button onClick={handleClick}>Log In</button>
+                <button onClick={() => setSignup(true)}>Not signed up?</button>
             </Card>
         )
     }
@@ -42,7 +47,8 @@ function LoginForm(){
             <Card sx={{display: "flex", flexDirection: "column", maxWidth: "150px"}}>
                 <input name="user_name" onChange={handleChange} placeholder={'Username'}></input>
                 <input name="password" onChange={handleChange} placeholder={'Password'}></input>
-                <input name="confirm_password" onChange={handleChange} placeholder={'Password'}></input>
+                <input name="confirm_password" onChange={handleChange} placeholder={'Repeat Password'}></input>
+                <button onClick={() => setSignup(false)}>Already signed up?</button>
             </Card>
         )
     }

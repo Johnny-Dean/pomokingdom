@@ -4,7 +4,7 @@ import { Character } from "../components/character/character_interface";
 const CharacterContext = React.createContext<Character | null>(null);
 const UpdateCharacterContext = React.createContext<(c: Character) => void | null>(null!);
 
-export function useCharacter(){
+export function useGetCharacter(){
     return useContext(CharacterContext);
 }
 

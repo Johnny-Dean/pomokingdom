@@ -7,7 +7,7 @@ if (storedID) {
     USER_ID = JSON.parse(storedID);
 }
 
-export const signIn = (formdata: authform) => {
+const signIn = (formdata: authform) => {
     return axios.put(BASE_URL, formdata).then(res => {
         localStorage.setItem('id', JSON.stringify(res.data.result._id));
         return {hasError: false}
@@ -17,10 +17,24 @@ export const signIn = (formdata: authform) => {
     })
 }
 
-export const signUp = (formdata: authform) => {
-    axios.post(BASE_URL, formdata).then(res => console.log(res)).catch(err => console.log(err))
+const signUp = (formdata: authform) => {
+    return axios.post(BASE_URL, formdata).then(res => console.log(res)).catch(err => console.log(err))
 }
 
-export const getCharacter = () => {
+const getCharacter = () => {
     return axios.get(`${BASE_URL}/character?userId=${USER_ID}`).then(res => res.data)
 }
+
+const getItemShop = () => {
+    const request = axios.get("http://localhost:5000/api/v1/itemshop/");
+    return request.then(res =>  res.data.items);
+}
+
+const API = {
+    signUp,
+    signIn,
+    getCharacter,
+    getItemShop
+
+}
+export default API;
