@@ -12,6 +12,7 @@ function Inventory(){
             </Card>
         )
     } 
+    
     else {
         return (
             <Card>

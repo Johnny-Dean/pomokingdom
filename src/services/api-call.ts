@@ -22,6 +22,7 @@ const signUp = (formdata: authform) => {
 }
 
 const getCharacter = () => {
+    console.log("ran from front end")
     return axios.get(`${BASE_URL}/character?userId=${USER_ID}`).then(res => res.data)
 }
 
@@ -30,11 +31,21 @@ const getItemShop = () => {
     return request.then(res =>  res.data.items);
 }
 
+const postTask = (task: string) => {
+    return axios.post(`http://localhost:5000/api/v1/users/tasks`, {
+        user_id: USER_ID, 
+        task_name: task
+    })
+}
+
+
+
 const API = {
     signUp,
     signIn,
     getCharacter,
-    getItemShop
+    getItemShop,
+    postTask
 
 }
 export default API;

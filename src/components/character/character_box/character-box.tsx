@@ -13,7 +13,7 @@ function CharacterBox(){
         API.getCharacter().then((res: Character) => {
             updateCharacter(res);
         })
-    }, [updateCharacter])
+    }, [])
     
     return (
         <div>

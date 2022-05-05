@@ -4,3 +4,13 @@
     align-items: center;
     margin: 25px;
 }
+
+.h-stack{
+    display: flex;
+    flex-direction: column;
+}
+
+.v-stack{
+    display: flex;
+    flex-direction: row;
+}

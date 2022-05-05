@@ -1,0 +1,8 @@
+.tasks-display{
+    display: flex;
+    justify-content: center;
+    background-color: rgba(237, 237, 237, 0.5);
+    margin-top: 2em;
+    padding: 1em;
+    border-radius: 15px;
+}
