@@ -5,6 +5,8 @@
 .loadout-container{
     max-width: 200px;
     max-height: 400px;
+    padding: 1em;
+
 }
 
 .item-container {

@@ -1,24 +1,28 @@
 .tasks-display-bg{
     display: flex;
     justify-content: center;
-    background-color: rgba(237, 237, 237, 0.5);
+    background-color: rgba(249, 249, 249, 0.4);
     margin-top: 2em;
     padding: 1em;
     border-radius: 15px;
 }
 
-.task-display {
-    width: 100%;
+.task-list{
+    max-height: 75%;
+    overflow: auto, hidden;
 }
 
-.task-list{
-    background-color: red;
-    height: 4em;
-    overflow: auto;
+.add-task{
+    margin-top: 1em;
 }
+
+
 
 .indv-task-box{
-    width: 100%;
-    background-color: goldenrod;
+    /* min-width: 15em;
+    background-color: rgba(206, 206, 206, 0.5);
+    margin: .25em;
+    margin-right: 1em;
+    padding: .25em; */
 }
 

@@ -1,3 +1,4 @@
+import { Button } from '@mui/material';
 import 'rpg-awesome/css/rpg-awesome.css';
 interface MenuButtonProps {
     iconId: string,
@@ -6,9 +7,14 @@ interface MenuButtonProps {
 
 function MenuButton({iconId, onClick}: MenuButtonProps){
     return (
-        <button onClick={onClick}>
+        <Button 
+            onClick={onClick}
+        sx={{
+            color: "black"
+        }}
+        >
             <i className={`ra ra-${iconId} ra-2x`}></i> 
-        </button>
+        </Button>
     )
 }
 

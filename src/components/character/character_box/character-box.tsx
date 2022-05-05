@@ -1,4 +1,4 @@
-import {Card, Avatar} from '@mui/material';
+import {Card, Avatar, Box} from '@mui/material';
 import './character-box.css'
 import { useGetCharacter, useCharacterUpdate } from '../../../context/character_provider';
 import { useEffect } from 'react';
@@ -16,13 +16,17 @@ function CharacterBox(){
     }, [])
     
     return (
-        <div>
-            <Avatar variant='square'></Avatar>
-            <Card>
+        <Box sx= {{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+        }}>
+            <Avatar variant='square' /> 
+            <div>
                 <p>{character?.char_name}</p>
                 <p>{character?.stats?.gold}</p>
-            </Card>
-        </div>
+            </div>
+        </Box>
     )
 }
 

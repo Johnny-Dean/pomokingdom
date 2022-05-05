@@ -2,7 +2,7 @@
     display: flex;  
     align-items: center;
     flex-direction: column;
-    background-color: rgba(237, 237, 237, 0.5);
+    background-color: rgba(249, 249, 249, 0.4);
     padding: 1em;
     border-radius: 15px;
 
@@ -10,6 +10,8 @@
 .timer-button-container{
     margin-bottom: 15px;
 }
-.Button{
-    color: black;
+
+.timer-text {
+    font-size: 4em;
+    font-weight: lighter;
 }

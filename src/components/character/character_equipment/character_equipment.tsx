@@ -5,7 +5,12 @@ import ItemCard from '../../item/item_card';
 
 function CharacterEquipment(){
     return (
-        <Card className='loadout-container'>
+        <Card className='loadout-container'
+            sx={{
+                backgroundColor: "rgba(249, 249, 249, 0.4)",
+                boxShadow: 1    
+            }}
+        >
             <ItemCard name="Head" iconId="helmet" />
 
             <div className="item-row-container">

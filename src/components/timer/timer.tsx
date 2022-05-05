@@ -3,7 +3,7 @@ import convSecondsToFancyTime from "../../services/seconds-conversion";
 import TimerButtons from "./timer-buttons";
 import TimerState from "./timerstate";
 import './timer.css'
-import { Button } from "@mui/material";
+import { Box, Button } from "@mui/material";
 function Timer(){
     const [timerRunning, setTimerRunning] = useState<boolean>(false);
     const [currTimerState, setTimerState] = useState<TimerState>(TimerState.STUDY)
@@ -30,11 +30,16 @@ function Timer(){
     }, [timerRunning, seconds])
     
     return (
-        <div className="timer-container">
-            <h1>{convSecondsToFancyTime(seconds)}</h1>
+        <Box 
+        className="timer-container" 
+        sx={{
+            boxShadow: 1
+        }} 
+        >
+            <span className="timer-text">{convSecondsToFancyTime(seconds)}</span>
             <TimerButtons newTimerState={handleTimerStateChange} currTimerState={currTimerState}/>
             <Button className='Button' variant='contained' onClick={handleClick}>{timerRunning?'Stop':'Start'}</Button>
-        </div>
+        </Box>
     )
 } 
 export default Timer;

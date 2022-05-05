@@ -1,6 +1,5 @@
-import { List } from "@mui/material"
+import { Box, Button, List, ListItem, ListItemButton, TextField } from "@mui/material"
 import { useEffect, useState } from "react"
-import { useGetCharacter } from "../../context/character_provider"
 import API from "../../services/api-call"
 import './tasks.css'
 
@@ -14,14 +13,10 @@ interface Props {
 }
 
 function Task({taskName}: Props){
-    const handleClick = () => {
-
-    }
-
     return (
-        <div className="indv-task-box">
+        <ListItemButton>
             {taskName}
-        </div>
+        </ ListItemButton>
     )
 }
 function Tasks(){
@@ -48,19 +43,33 @@ function Tasks(){
     }, [])
 
     return(
-        <div className="tasks-display-bg">
+        <Box 
+        className="tasks-display-bg"
+        sx={{
+            boxShadow: 1
+        }}
+        
+        >
             <div className="h-stack tasks-display">
                 <List className="h-stack task-list">
-                    {tasks?.map((task: Task) => <Task key={task._id} taskName={task.name} />)}
+                        {tasks?.map((task: Task) => <Task key={task._id} taskName={task.name} />)}
                 </List>
-                <div className="v-stack">
+                <div className="v-stack add-task">
                     <form>
-                        <input onChange={handleTaskInputChange}></input>
-                        <button onClick={addTask}>Add</button>
+                        <TextField 
+                            onChange={handleTaskInputChange}
+                            variant="outlined"
+                        />
+                        <Button 
+                            variant="outlined" 
+                            onClick={addTask}
+                        >
+                            +
+                        </Button>
                     </form>
                 </div>
             </div>
-        </div>
+        </Box>
     )
 }
 
