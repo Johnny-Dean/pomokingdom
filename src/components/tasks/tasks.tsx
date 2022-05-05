@@ -1,3 +1,4 @@
+import { List } from "@mui/material"
 import { useEffect, useState } from "react"
 import { useGetCharacter } from "../../context/character_provider"
 import API from "../../services/api-call"
@@ -13,8 +14,12 @@ interface Props {
 }
 
 function Task({taskName}: Props){
+    const handleClick = () => {
+
+    }
+
     return (
-        <div className="task-box">
+        <div className="indv-task-box">
             {taskName}
         </div>
     )
@@ -43,13 +48,17 @@ function Tasks(){
     }, [])
 
     return(
-        <div className="tasks-display">
-            {tasks?.map((task: Task) => <Task key={task._id} taskName={task.name} />)}
-            <div className="v-stack">
-                <form>
-                    <input onChange={handleTaskInputChange}></input>
-                    <button onClick={addTask}>Add</button>
-                </form>
+        <div className="tasks-display-bg">
+            <div className="h-stack tasks-display">
+                <List className="h-stack task-list">
+                    {tasks?.map((task: Task) => <Task key={task._id} taskName={task.name} />)}
+                </List>
+                <div className="v-stack">
+                    <form>
+                        <input onChange={handleTaskInputChange}></input>
+                        <button onClick={addTask}>Add</button>
+                    </form>
+                </div>
             </div>
         </div>
     )
