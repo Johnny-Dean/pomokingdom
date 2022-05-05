@@ -3,7 +3,7 @@ import { useGetCharacter } from "../../context/character_provider"
 import API from "../../services/api-call"
 import './tasks.css'
 
-interface Task {
+export interface Task {
     _id: string,
     name: string
 }
@@ -20,29 +20,37 @@ function Task({taskName}: Props){
     )
 }
 function Tasks(){
-    let character_tasks = useGetCharacter()?.tasks
+    const [tasks, setTasks] = useState<Task[] | undefined>([])
     const [task, setTask] = useState("")
 
     const handleTaskInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        console.log(e.target.value)
+        setTask(e.target.value)
     }
     
     const addTask = (event: any) => {
         event.preventDefault()
-        API.postTask(task).then(x => console.log(x))
-        console.log("handle add task")
+        API.postTask(task).then(result =>  {
+            const taskAdded = result.data.task;
+            setTasks(tasks?.concat(taskAdded))
+        })
     }
+
+    useEffect(() => {
+        API.getTask().then(res => {
+            const tasks: Task[] = res.data.tasks
+            setTasks(tasks)
+        })
+    }, [])
 
     return(
         <div className="tasks-display">
-            {character_tasks?.map((task: string) => <Task taskName={task} />)}
+            {tasks?.map((task: Task) => <Task key={task._id} taskName={task.name} />)}
             <div className="v-stack">
                 <form>
                     <input onChange={handleTaskInputChange}></input>
                     <button onClick={addTask}>Add</button>
                 </form>
             </div>
-
         </div>
     )
 }

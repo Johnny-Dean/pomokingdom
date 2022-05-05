@@ -1,3 +1,5 @@
+import { Task } from "../tasks/tasks"
+
 export interface Character {
     char_name?: string,
     stats: {
@@ -9,5 +11,5 @@ export interface Character {
         gold: number
     },
     inventory: [],
-    tasks: string[]
+    tasks: Task[]
 }

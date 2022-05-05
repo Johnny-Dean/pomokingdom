@@ -31,6 +31,11 @@ const getItemShop = () => {
     return request.then(res =>  res.data.items);
 }
 
+// axios.get(`http://localhost:5000/api/v1/users/tasks?userId=${userId}`)
+const getTask = () => {
+    return axios.get(`${BASE_URL}/tasks?userId=${USER_ID}`)
+}
+
 const postTask = (task: string) => {
     return axios.post(`http://localhost:5000/api/v1/users/tasks`, {
         user_id: USER_ID, 
@@ -45,7 +50,8 @@ const API = {
     signIn,
     getCharacter,
     getItemShop,
-    postTask
+    postTask,
+    getTask
 
 }
 export default API;
