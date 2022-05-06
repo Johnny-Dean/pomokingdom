@@ -1,9 +1,10 @@
-import { autocompleteClasses, Box } from "@mui/material";
+import { autocompleteClasses, Box, Typography } from "@mui/material";
 import { motion } from "framer-motion";
 import LoginForm from "../components/login/login-form";
 
 function Login(){
     return (
+        <>
         <motion.div
             animate={{y:300}}
         >
@@ -24,6 +25,8 @@ function Login(){
                     <LoginForm />
             </Box>
         </motion.div>
+        </>
+
 
     )
 }
