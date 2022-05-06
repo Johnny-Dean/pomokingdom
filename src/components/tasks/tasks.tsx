@@ -54,20 +54,24 @@ function Tasks(){
                 <List className="h-stack task-list">
                         {tasks?.map((task: Task) => <Task key={task._id} taskName={task.name} />)}
                 </List>
-                <div className="v-stack add-task">
+                <Box className="v-stack add-task">
+
                     <form>
                         <TextField 
                             onChange={handleTaskInputChange}
                             variant="outlined"
+                            size="small"
                         />
                         <Button 
                             variant="outlined" 
                             onClick={addTask}
+                            size="small"
                         >
                             +
                         </Button>
                     </form>
-                </div>
+
+                </Box>
             </div>
         </Box>
     )

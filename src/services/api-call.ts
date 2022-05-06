@@ -22,7 +22,7 @@ const signUp = (formdata: authform) => {
 }
 
 const getCharacter = () => {
-    console.log("ran from front end")
+
     return axios.get(`${BASE_URL}/character?userId=${USER_ID}`).then(res => res.data)
 }
 
@@ -43,7 +43,13 @@ const postTask = (task: string) => {
     })
 }
 
-
+    // const res = await axios.get("/users/friends/" + userId);
+    // http://localhost:5000/api/v1/users/friends/61a940b766d11ba235666732
+    // 'http://localhost:5000/api/v1/users';
+    // `http://localhost:5000/api/v1/users/friends/?userId=${userId}`
+const getFriendsList = () => {
+    return axios.get(`${BASE_URL}/friends/?userId=${USER_ID}`).then(res => res.data).catch(err => console.log(err))
+}
 
 const API = {
     signUp,
@@ -51,7 +57,8 @@ const API = {
     getCharacter,
     getItemShop,
     postTask,
-    getTask
+    getTask,
+    getFriendsList
 
 }
 export default API;

@@ -10,9 +10,7 @@ function CharacterBox(){
     const updateCharacter = useCharacterUpdate();
 
     useEffect(() => {
-        API.getCharacter().then((res: Character) => {
-            updateCharacter(res);
-        })
+        API.getCharacter().then((res: Character) => updateCharacter(res))
     }, [])
     
     return (

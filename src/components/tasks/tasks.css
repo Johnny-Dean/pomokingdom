@@ -16,13 +16,9 @@
     margin-top: 1em;
 }
 
+form {
+    display: flex;
+    justify-content: space-between;
 
-
-.indv-task-box{
-    /* min-width: 15em;
-    background-color: rgba(206, 206, 206, 0.5);
-    margin: .25em;
-    margin-right: 1em;
-    padding: .25em; */
 }
 
