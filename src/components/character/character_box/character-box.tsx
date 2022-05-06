@@ -4,27 +4,26 @@ import { useGetCharacter, useCharacterUpdate } from '../../../context/character_
 import { useEffect } from 'react';
 import API from '../../../services/api-call';
 import { Character } from '../character_interface';
+import CharacterSetup from '../character_initial_setup/character_setup';
 
 function CharacterBox(){
     const character = useGetCharacter();
-    const updateCharacter = useCharacterUpdate();
 
-    useEffect(() => {
-        API.getCharacter().then((res: Character) => updateCharacter(res))
-    }, [])
-    
     return (
-        <Box sx= {{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-        }}>
-            <Avatar variant='square' /> 
-            <div>
-                <p>{character?.char_name}</p>
-                <p>{character?.stats?.gold}</p>
-            </div>
-        </Box>
+        <>
+            <Box sx= {{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+            }}>
+                <Avatar variant='square' /> 
+                <div>
+                    <p>{character?.char_name}</p>
+                    <p>{character?.stats?.gold}</p>
+                </div>
+            </Box>
+        </>
+
     )
 }
 

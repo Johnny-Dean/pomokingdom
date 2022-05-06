@@ -19,7 +19,7 @@ function Inventory(){
                 <Stack>
                     {inventory?.map((item: any) => {
                         console.log(inventory)
-                        return <ItemCard iconId={(Math.random).toString()}/>
+                        return <ItemCard key={(Math.random).toString()} iconId="sword" name={item.name}/>
                     })}
                 </Stack>
             </Card>

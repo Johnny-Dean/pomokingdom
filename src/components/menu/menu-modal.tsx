@@ -1,4 +1,5 @@
 import { ClickAwayListener, Dialog } from "@mui/material";
+import { motion } from "framer-motion";
 import { useState } from "react";
 import MenuButton from "./menu-button";
 
@@ -15,6 +16,7 @@ function MenuModal({toRender, iconId}: Props){
     return (
         <> 
             <MenuButton onClick={handleOpen} iconId={iconId} />
+
             <Dialog
                 open={open}
             >
@@ -24,6 +26,7 @@ function MenuModal({toRender, iconId}: Props){
                     </div>
                 </ClickAwayListener>
             </Dialog>
+
         </>
     )
 }

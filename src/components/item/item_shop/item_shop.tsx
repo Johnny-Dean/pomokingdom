@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Button, Card, Stack } from "@mui/material";
+import { Button, Card, Grid, Stack, Typography } from "@mui/material";
 import API from "../../../services/api-call";
 import ItemCard from "../item_card";
 import { useCharacterUpdate, useGetCharacter } from "../../../context/character_provider";
 import { Item } from "../item_interface";
-
-
+import { Box, maxWidth } from "@mui/system";
 
 interface ItemShopCardProps{
     item: Item,
@@ -16,11 +15,13 @@ function ItemShopCard({item, handleClick}: ItemShopCardProps){
 
     
     return (
-        <Card>
+        <Box sx={{
+            margin: "1em"
+        }}>
             <ItemCard iconId="sword" />
-            <p>{item.cost}</p>
-            {(!item.isOwned) && <Button onClick={handleClick}>buy</Button>}
-        </Card>
+            {(!item.isOwned) && 
+            <Button variant="contained" size="small" onClick={handleClick}>{item.cost}</Button>}
+        </Box>
     )
 }
 
@@ -51,21 +52,32 @@ function ItemShop(){
         API.getItemShop().then(res => {
             const itemShopItems = flagItemsOwned(res);
             setItemShopInventory(itemShopItems);
-            console.log(res);
         });
     }, [])
 
 
     return (
-        <Card>
-            Your current gold: {userGold}
-            <Stack
-            direction="row"
-            justifyContent="center"
-            >
-                {itemShopInventory.map((item: Item) => <ItemShopCard key={item._id} item={item} handleClick={() => handleBuyClick(item)} />)}
-            </Stack>
-        </Card>
+            <Box sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+            }}>
+                    <Typography variant="h5">
+                        Your current gold: {userGold}
+                        </Typography>
+                    <Grid
+                        container
+                        sx={{
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            flexDirection: "initial"
+                        }}
+                    >
+                        {itemShopInventory.map((item: Item) => <ItemShopCard key={item._id} item={item} handleClick={() => handleBuyClick(item)} />)}
+                    </Grid>
+            </Box>
     )
 }
 export default ItemShop;
