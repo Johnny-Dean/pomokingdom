@@ -1,3 +1,4 @@
+import { Item } from "../item/item_interface"
 import { Task } from "../tasks/tasks"
 
 export interface Character {
@@ -10,6 +11,6 @@ export interface Character {
         current_hp: number,
         gold: number
     },
-    inventory: [],
+    inventory: Item[],
     tasks: Task[]
 }

@@ -18,7 +18,8 @@ function Inventory(){
             <Card>
                 <Stack>
                     {inventory?.map((item: any) => {
-                        return <ItemCard />
+                        console.log(inventory)
+                        return <ItemCard iconId={(Math.random).toString()}/>
                     })}
                 </Stack>
             </Card>
