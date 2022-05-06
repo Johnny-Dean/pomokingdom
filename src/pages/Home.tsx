@@ -15,11 +15,9 @@ const hideAnimations = {
     visible: {opacity: 1},
     hidden: {opacity: 0}
 }
-
 interface IAnimation{
     animationControl: AnimationControls
 }
-
 function CharacterEquipment_Animated({animationControl}: IAnimation){
     return (
             <motion.div
@@ -30,7 +28,6 @@ function CharacterEquipment_Animated({animationControl}: IAnimation){
             </motion.div>
     )
 }
-
 function Tasks_Animated({animationControl}: IAnimation){
     return (
     <motion.div
@@ -68,8 +65,6 @@ function RightSideMenu_Animated({animationControl}: IAnimation){
 
     )
 }
-
-
 function Home(){
     const animationControl = useAnimation()
     const updateCharacter = useCharacterUpdate();
@@ -81,11 +76,10 @@ function Home(){
         })
     }, [])
     
-    console.log(!character?.char_name)
     return (
+        // repeating animation control a lot 🤔
         <div className='container'>
-        
-            {<CharacterSetup /> && !character?.char_name}
+            {!character?.char_name && <CharacterSetup /> }
             <CharacterEquipment_Animated animationControl={animationControl} />
             <div className="h-stack">
                     <Timer animationControl={animationControl} />
