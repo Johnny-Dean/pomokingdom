@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Card } from "@mui/material";
+import { Button, Card, Box, TextField } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import API from "../../services/api-call";
 
@@ -34,12 +34,33 @@ function LoginForm(){
     
     if(!signup){
         return (
-            <Card sx={{display: "flex", flexDirection: "column", maxWidth: "150px"}}>
-                <input name="user_name" onChange={handleChange} placeholder={'Username'}></input>
-                <input name="password" onChange={handleChange} placeholder={'Password'}></input>
-                <button onClick={handleClick}>Log In</button>
-                <button onClick={() => setSignup(true)}>Not signed up?</button>
-            </Card>
+            <Box sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center"
+            }}>
+                <Box sx={{
+                    display: "flex", 
+                    gap: "10px",
+                    flexDirection: "column",
+                    marginBottom: "1em",
+                    width: "100%"
+                    }}>
+                    <TextField name="user_name" onChange={handleChange} placeholder={'Username'} size="small" />
+                    <TextField name="password" onChange={handleChange} placeholder={'Password'}  size="small" />
+                </Box>
+
+                <Box className="v-stack" sx={{
+                    justifyContent:"space-between", 
+                    width: "100%", 
+                    padding: "1em",
+                    
+                    }}>
+                    <Button onClick={handleClick} variant="contained">Log In</Button>
+                    <Button onClick={() => setSignup(true)} variant="contained">Not signed up?</Button>
+                </Box>
+            </Box>
+
         )
     }
     else {
