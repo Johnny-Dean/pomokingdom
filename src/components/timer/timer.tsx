@@ -4,16 +4,25 @@ import TimerButtons from "./timer-buttons";
 import TimerState from "./timerstate";
 import './timer.css'
 import { Box, Button } from "@mui/material";
-function Timer(){
+import { AnimationControls } from "framer-motion";
+
+interface Props{
+    animationControl: AnimationControls
+}
+
+function Timer({animationControl}: Props){
     const [timerRunning, setTimerRunning] = useState<boolean>(false);
     const [currTimerState, setTimerState] = useState<TimerState>(TimerState.STUDY)
     const [seconds, setSeconds] = useState<number>(currTimerState)
 
     const handleClick = (): void => {
+        if(currTimerState === TimerState.STUDY) animationControl.start("hidden")
+        if(timerRunning) animationControl.start("visible")
         setTimerRunning(!timerRunning);
     }
 
     const handleTimerStateChange = (newTimerState: TimerState): void => {
+        animationControl.start("visible")
         setTimerState(newTimerState);
         setSeconds(newTimerState);
         setTimerRunning(false);
