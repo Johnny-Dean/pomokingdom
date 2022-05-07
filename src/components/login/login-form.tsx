@@ -10,6 +10,74 @@ export interface authform {
     confirm_password: string
 }
 
+
+interface Props{
+    handleChange: (e: any) => void,
+    handleClick: () => void,
+    setSignup: React.Dispatch<React.SetStateAction<boolean>>
+}
+function SignInForm({handleChange, handleClick, setSignup}: Props){
+    return (
+        <Box sx={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center"
+        }}>
+            <Box sx={{
+                display: "flex", 
+                gap: "10px",
+                flexDirection: "column",
+                marginBottom: "1em",
+                width: "100%"
+                }}>
+                <TextField name="user_name" onChange={handleChange} placeholder={'Username'} size="small" />
+                <TextField name="password" onChange={handleChange} placeholder={'Password'}  size="small" />
+            </Box>
+
+            <Box className="v-stack" sx={{
+                justifyContent:"space-between", 
+                width: "100%", 
+                padding: "1em",
+                }}>
+                <Button onClick={handleClick} variant="contained">Log In</Button>
+                <Button onClick={() => setSignup(true)} variant="contained">Not signed up?</Button>
+            </Box>
+        </Box>
+    )
+}
+
+function SignUpForm({handleChange, handleClick, setSignup}: Props){
+    return (
+        <Box sx={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center"
+        }}>
+            <Box sx={{
+                display: "flex", 
+                gap: "10px",
+                flexDirection: "column",
+                marginBottom: "1em",
+                width: "100%"
+            }}>
+                <TextField name="user_name" onChange={handleChange} placeholder={'Username'} size="small" ></TextField>
+                <TextField name="password" onChange={handleChange} placeholder={'Password'} size="small" ></TextField>
+                <TextField name="confirm_password" onChange={handleChange} placeholder={'Repeat Password'} size="small" ></TextField>
+            </Box>
+            <Box className="v-stack"
+                sx={{
+                    justifyContent:"space-between", 
+                    width: "100%", 
+                    padding: "1em",
+                    }}
+            >
+                <Button onClick={handleClick} variant="contained">Sign Up</Button>
+                <Button onClick={() => setSignup(false)} variant="contained">Already signed up?</Button>
+            </Box>
+        </Box>
+    )
+}
+
 function LoginForm(){
     const navigate = useNavigate();
     const [form, setForm] = useState<authform>({ auth: 1, user_name: '', password: '', confirm_password: ''});
@@ -32,46 +100,8 @@ function LoginForm(){
         
     }
     
-    if(!signup){
-        return (
-            <Box sx={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center"
-            }}>
-                <Box sx={{
-                    display: "flex", 
-                    gap: "10px",
-                    flexDirection: "column",
-                    marginBottom: "1em",
-                    width: "100%"
-                    }}>
-                    <TextField name="user_name" onChange={handleChange} placeholder={'Username'} size="small" />
-                    <TextField name="password" onChange={handleChange} placeholder={'Password'}  size="small" />
-                </Box>
-
-                <Box className="v-stack" sx={{
-                    justifyContent:"space-between", 
-                    width: "100%", 
-                    padding: "1em",
-                    
-                    }}>
-                    <Button onClick={handleClick} variant="contained">Log In</Button>
-                    <Button onClick={() => setSignup(true)} variant="contained">Not signed up?</Button>
-                </Box>
-            </Box>
-
-        )
-    }
-    else {
-        return (
-            <Card sx={{display: "flex", flexDirection: "column", maxWidth: "150px"}}>
-                <input name="user_name" onChange={handleChange} placeholder={'Username'}></input>
-                <input name="password" onChange={handleChange} placeholder={'Password'}></input>
-                <input name="confirm_password" onChange={handleChange} placeholder={'Repeat Password'}></input>
-                <button onClick={() => setSignup(false)}>Already signed up?</button>
-            </Card>
-        )
-    }
+    if(!signup) return <SignInForm handleChange={handleChange} handleClick={handleClick} setSignup={setSignup} />
+    else        return <SignUpForm handleChange={handleChange} handleClick={handleClick} setSignup={setSignup} />
+    
 }
 export default LoginForm;

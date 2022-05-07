@@ -81,24 +81,3 @@ function ItemCard({item, iconId, name}: Props){
 
 
 export default ItemCard;
-
-        // <Tooltip title={item 
-        //     ? 
-        //     <>
-        //         <h3 style={{color: `${generateRarityColor(item.rarity)}`}}>{item.name}</h3>
-        //     </>
-        //     : `${name}`}
-        // followCursor={true}
-        // >
-        //     <Card className="item-container" sx={{
-        //         border: `${item ? generateRarityColor(item.rarity) : ``} solid 1px`
-        //     }}>
-        //         <span 
-        //             className={`ra ra-${item ? generateIconId(item.name) : iconId} ra-3x`}
-        //             style={{
-        //                 color: `${item ? generateItemColor(item.type) : ""}`
-        //             }} 
-        //         >        
-        //         </span>
-        //     </Card>
-        // </Tooltip>

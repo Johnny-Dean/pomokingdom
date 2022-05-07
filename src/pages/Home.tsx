@@ -18,7 +18,7 @@ const hideAnimations = {
 interface IAnimation{
     animationControl: AnimationControls
 }
-function CharacterEquipment_Animated({animationControl}: IAnimation){
+function CharacterEquipmentAnimated({animationControl}: IAnimation){
     return (
             <motion.div
                 animate={animationControl}
@@ -28,7 +28,7 @@ function CharacterEquipment_Animated({animationControl}: IAnimation){
             </motion.div>
     )
 }
-function Tasks_Animated({animationControl}: IAnimation){
+function TasksAnimated({animationControl}: IAnimation){
     return (
     <motion.div
         animate={animationControl}
@@ -38,7 +38,7 @@ function Tasks_Animated({animationControl}: IAnimation){
     </motion.div>
     )
 }
-function RightSideMenu_Animated({animationControl}: IAnimation){
+function RightSideMenuAnimated({animationControl}: IAnimation){
     return (
         <motion.div
             animate={animationControl}
@@ -80,12 +80,12 @@ function Home(){
         // repeating animation control a lot 🤔
         <div className='container'>
             {!character?.char_name && <CharacterSetup /> }
-            <CharacterEquipment_Animated animationControl={animationControl} />
+            <CharacterEquipmentAnimated animationControl={animationControl} />
             <div className="h-stack">
                     <Timer animationControl={animationControl} />
-                    <Tasks_Animated animationControl={animationControl}/>
+                    <TasksAnimated animationControl={animationControl}/>
             </div>
-            <RightSideMenu_Animated animationControl={animationControl} />
+            <RightSideMenuAnimated animationControl={animationControl} />
         </div>
 
     )

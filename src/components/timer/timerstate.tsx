@@ -1,5 +1,5 @@
 enum TimerState {
-    STUDY = 1500,
+    STUDY = 4,
     SHORTBREAK = 300,
     LONGBREAK = 1200
 }
