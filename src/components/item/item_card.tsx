@@ -8,7 +8,7 @@ interface Props {
     name?: string
 }
 
-enum RarityColors{
+enum RarityColors {
     Silver        = 1,
     DarkSeaGreen  = 2,
     DeepSkyBlue   = 3,
@@ -16,24 +16,27 @@ enum RarityColors{
     Crimson       = 5
 }
 
-interface I_IconIds{
-    [index:string]: string
-}
-
-let IconIds = {
+interface I_IconIds{[index:string]: string}
+const IconIds = {
     "Helmet":  "helmet",
     "Sword" :  "sword",
     "Shield":  "shield"
 } as I_IconIds
 
-function generateColor(itemRarity: number): string{
-    return RarityColors[itemRarity]
-}
+interface I_ItemQuality{[index:string]: string}
+const ItemQualityColors = {
+    "Bronze" : "DarkGoldenRod",
+    "Diamond": "DarkTurquoise",
+    "Gold"   : "Gold",
+    "Silver" : "Silver"
+} as I_ItemQuality
 
-function generateIconId(itemType: string): string {
-    console.log(IconIds[itemType])
-    return IconIds[itemType]
-}
+// Way to combine two colors functions?
+
+const generateRarityColor = (itemRarity: number): string => RarityColors[itemRarity]
+const generateItemColor = (itemType: string): string => ItemQualityColors[itemType]
+const generateIconId = (itemName: string): string => IconIds[itemName]
+
 
 function ItemCard({item, iconId, name}: Props){
     return (
@@ -41,14 +44,21 @@ function ItemCard({item, iconId, name}: Props){
         <Tooltip title={item 
             ? 
             <>
-                <h3 style={{color: `${generateColor(item.rarity)}`}}>{item.name}</h3>
+                <h3 style={{color: `${generateRarityColor(item.rarity)}`}}>{item.name}</h3>
             </>
             : `${name}`}
         followCursor={true}
         >
-            {/* ra ra-${iconId} ra-3x */}
-            <Card className="item-container">
-                <i className={`ra ra-${item ? generateIconId(item.name) : iconId} ra-3x`}></i>
+            <Card className="item-container" sx={{
+                border: `${item ? generateRarityColor(item.rarity) : ``} solid 1px`
+            }}>
+                <span 
+                    className={`ra ra-${item ? generateIconId(item.name) : iconId} ra-3x`}
+                    style={{
+                        color: `${item ? generateItemColor(item.type) : ""}`
+                    }} 
+                >        
+                </span>
             </Card>
         </Tooltip>
 
