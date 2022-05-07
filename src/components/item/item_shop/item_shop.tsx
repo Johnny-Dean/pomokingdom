@@ -18,7 +18,7 @@ function ItemShopCard({item, handleClick}: ItemShopCardProps){
         <Box sx={{
             margin: "1em"
         }}>
-            <ItemCard iconId="sword" />
+            <ItemCard item={item} iconId="sword" />
             {(!item.isOwned) && 
             <Button variant="contained" size="small" onClick={handleClick}>{item.cost}</Button>}
         </Box>
@@ -51,6 +51,7 @@ function ItemShop(){
     useEffect( () => {
         API.getItemShop().then(res => {
             const itemShopItems = flagItemsOwned(res);
+            console.log(itemShopItems)
             setItemShopInventory(itemShopItems);
         });
     }, [])

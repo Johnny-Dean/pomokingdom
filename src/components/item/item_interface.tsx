@@ -4,6 +4,7 @@ export interface Item {
     name: string,
     type: string,
     _id: string,
+    rarity: number,
     isOwned?: boolean
 }
 
