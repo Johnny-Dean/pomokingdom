@@ -1,5 +1,5 @@
 // generalize this for inventory and shop
-import { Card, Tooltip, tooltipClasses, Box } from "@mui/material";
+import { Card, Tooltip } from "@mui/material";
 import { Item } from "./item_interface";
 
 interface Props {
@@ -16,7 +16,7 @@ enum RarityColors {
     Crimson       = 5
 }
 
-interface I_IconIds{[index:string]: string}
+export interface I_IconIds{[index:string]: string}
 const IconIds = {
     "Helmet":  "helmet",
     "Sword" :  "sword",
@@ -37,32 +37,68 @@ const generateRarityColor = (itemRarity: number): string => RarityColors[itemRar
 const generateItemColor = (itemType: string): string => ItemQualityColors[itemType]
 const generateIconId = (itemName: string): string => IconIds[itemName]
 
+interface PlaceholderProps{
+    name: string,
+    iconId: string
+}
 
-function ItemCard({item, iconId, name}: Props){
+function ItemCardPlaceHolder({name, iconId}: PlaceholderProps){
     return (
-        // Tool tip can take in a react fragment, which gives us the ability to use things like h3, divs, etc. However had some issues with classes on a span and I dont know if its because this is a little hacky
-        <Tooltip title={item 
-            ? 
-            <>
-                <h3 style={{color: `${generateRarityColor(item.rarity)}`}}>{item.name}</h3>
-            </>
-            : `${name}`}
-        followCursor={true}
-        >
-            <Card className="item-container" sx={{
-                border: `${item ? generateRarityColor(item.rarity) : ``} solid 1px`
-            }}>
-                <span 
-                    className={`ra ra-${item ? generateIconId(item.name) : iconId} ra-3x`}
-                    style={{
-                        color: `${item ? generateItemColor(item.type) : ""}`
-                    }} 
-                >        
-                </span>
+        <Tooltip title={name ? name : ""}>
+            <Card
+                className="item-container"
+            >
+                <span className={`ra ra-${iconId} ra-3x`}></span>
             </Card>
         </Tooltip>
-
     )
 }
 
+function ItemCard({item, iconId, name}: Props){
+    // should there be a check for this component? if using placeholder these should never be null, if they pass the !item check they are not null
+    if(!item) return <ItemCardPlaceHolder iconId={iconId!} name={name!} />
+    else return (
+        <Tooltip title={
+            <>
+                <h3 style={{color: `${generateRarityColor(item.rarity)}`}}>{item.name}</h3>
+            </>}
+        followCursor={true}
+        >
+            <Card
+                className="item-container"
+                sx={{
+                    border: `${generateRarityColor(item.rarity)} solid 1px`
+                }}
+            >
+                <span 
+                    className={`ra ra-${generateIconId(item.name)} ra-3x`} 
+                    style={{color: `${generateItemColor(item.type)}`}}
+                ></span>
+            </Card>
+        </Tooltip>
+    )
+}
+
+
 export default ItemCard;
+
+        // <Tooltip title={item 
+        //     ? 
+        //     <>
+        //         <h3 style={{color: `${generateRarityColor(item.rarity)}`}}>{item.name}</h3>
+        //     </>
+        //     : `${name}`}
+        // followCursor={true}
+        // >
+        //     <Card className="item-container" sx={{
+        //         border: `${item ? generateRarityColor(item.rarity) : ``} solid 1px`
+        //     }}>
+        //         <span 
+        //             className={`ra ra-${item ? generateIconId(item.name) : iconId} ra-3x`}
+        //             style={{
+        //                 color: `${item ? generateItemColor(item.type) : ""}`
+        //             }} 
+        //         >        
+        //         </span>
+        //     </Card>
+        // </Tooltip>
