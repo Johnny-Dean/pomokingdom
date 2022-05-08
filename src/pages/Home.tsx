@@ -69,7 +69,7 @@ function Home(){
     const animationControl = useAnimation()
     const updateCharacter = useCharacterUpdate();
     const character = useGetCharacter();
-
+    console.log(character)
     useEffect(() => {
         API.getCharacter().then((res: Character) => {
             updateCharacter(res)

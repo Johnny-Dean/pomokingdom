@@ -28,7 +28,7 @@ function SignInForm({handleChange, handleClick, setSignup}: Props){
                 gap: "10px",
                 flexDirection: "column",
                 marginBottom: "1em",
-                width: "100%"
+                width: "20em"
                 }}>
                 <TextField name="user_name" onChange={handleChange} placeholder={'Username'} size="small" />
                 <TextField name="password" onChange={handleChange} placeholder={'Password'}  size="small" />
@@ -58,7 +58,7 @@ function SignUpForm({handleChange, handleClick, setSignup}: Props){
                 gap: "10px",
                 flexDirection: "column",
                 marginBottom: "1em",
-                width: "100%"
+                width: "20em"
             }}>
                 <TextField name="user_name" onChange={handleChange} placeholder={'Username'} size="small" ></TextField>
                 <TextField name="password" onChange={handleChange} placeholder={'Password'} size="small" ></TextField>
@@ -87,15 +87,13 @@ function LoginForm(){
     const handleClick = () => {
         if (signup){
             API.signUp(form).then((res: any) => {
-                if (!res.hasError) navigate('/timer');
-                else alert("User does not exist.")
-            });
+                navigate('/timer');
+            }).catch(err => alert("User does not exist."));
         }
         else {
             API.signIn(form).then((res: any) => {
-                if (!res.hasError) navigate('/timer');
-                else alert("User does not exist.")
-            });
+                navigate('/timer');
+            }).catch(err => alert("User does not exist."));
         }
         
     }

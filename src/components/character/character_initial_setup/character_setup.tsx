@@ -1,17 +1,16 @@
-import { Button, ClickAwayListener, Dialog, Input, Typography } from "@mui/material";
+import { Button, Dialog, Input, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import { useState } from "react";
-
-import base from "../../../Art/Base/human_m_upscaled.png"
-import hair from "../../../Art/Head/short_white_upscaled.png"
-
-function SpriteGenerator(){
-    
-}
+import API from "../../../services/api-call";
 
 function CharacterSetup(){
-    const [open, setOpen] = useState(false);
-    const handleClose = () => setOpen(false);
+    const [open, setOpen] = useState(true);
+    const [characterName, setCharacterName] = useState("");
+    const handleChange = (e: any) => setCharacterName(e.target.value)
+    const handleClick = () => {
+        setOpen(false);
+        API.setName(characterName).then(res => console.log(res)).catch(err => console.log(err))
+    }
 
     return (
         <> 
@@ -25,10 +24,8 @@ function CharacterSetup(){
                         padding: "4em"
                     }}>
                         <Typography>Welcome to PomoKingdom</Typography>
-                        <Input placeholder="Character Name"></Input>
-                        <Button onClick={handleClose} variant="contained">Submit</Button>
-                        <img src={hair} />
-                        <img src={base} />
+                        <Input placeholder="Character Name" onChange={handleChange}></Input>
+                        <Button onClick={handleClick} variant="contained">Submit</Button>
                     </Box>
             </Dialog>
 
