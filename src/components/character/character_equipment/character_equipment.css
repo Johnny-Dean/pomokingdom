@@ -1,7 +1,3 @@
-.ra-3x {
-    color: lightgrey
-}
-
 .loadout-container{
     max-width: 200px;
     max-height: 400px;
@@ -20,4 +16,5 @@
 .item-row-container {
     display: flex;
     flex-direction: row;
+    color: 0
 }

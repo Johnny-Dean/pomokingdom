@@ -20,7 +20,10 @@ export interface I_IconIds{[index:string]: string}
 const IconIds = {
     "Helmet":  "helmet",
     "Sword" :  "sword",
-    "Shield":  "shield"
+    "Shield":  "shield",
+    "Amulet":  "crowned-heart",
+    "Chest" :  "vest",
+    "Ring":    "fire-ring"
 } as I_IconIds
 
 interface I_ItemQuality{[index:string]: string}
@@ -28,7 +31,8 @@ const ItemQualityColors = {
     "Bronze" : "DarkGoldenRod",
     "Diamond": "DarkTurquoise",
     "Gold"   : "Gold",
-    "Silver" : "Silver"
+    "Silver" : "Silver",
+    "Platinum":  "CornflowerBlue"
 } as I_ItemQuality
 
 // Way to combine two colors functions?
@@ -61,13 +65,15 @@ function ItemCard({item, iconId, name}: Props){
         <Tooltip title={
             <>
                 <h3 style={{color: `${generateRarityColor(item.rarity)}`}}>{item.name}</h3>
-            </>}
+            </>
+        }
         followCursor={true}
         >
             <Card
                 className="item-container"
                 sx={{
-                    border: `${generateRarityColor(item.rarity)} solid 1px`
+                    border: `${generateRarityColor(item.rarity)} solid 1px`,
+                    color: `${generateItemColor(item.type)}`
                 }}
             >
                 <span 

@@ -3,7 +3,7 @@ import Menu from "../components/menu/menu";
 import Timer from "../components/timer/timer";
 import CharacterEquipment from "../components/character/character_equipment/character_equipment";
 import Tasks from "../components/tasks/tasks";
-import { Card } from "@mui/material";
+import { Box, Card } from "@mui/material";
 import { animate, AnimationControls, motion, useAnimation } from "framer-motion";
 import CharacterSetup from "../components/character/character_initial_setup/character_setup";
 import { useCharacterUpdate, useGetCharacter } from "../context/character_provider";
@@ -44,23 +44,14 @@ function RightSideMenuAnimated({animationControl}: IAnimation){
             animate={animationControl}
             variants={hideAnimations}
         >
-            <div className="character-menu-container">
-                <Card 
-                sx={{
-                    zIndex: 1,
-                    position: "absolute",
-                    bottom: 460,
-                    padding: "0 1em"
-                }}>
-
-                    <CharacterBox />
-                </Card>
-                <Card sx={{
-                    padding: "1em"
-                }}>
-                    <Menu />
-                </Card>
-            </div>
+            <Box sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center"
+            }}>
+                <CharacterBox />
+                <Menu />
+            </Box>
         </motion.div>
 
     )

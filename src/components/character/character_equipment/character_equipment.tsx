@@ -14,30 +14,39 @@ interface I_CharacterEquipped {
     "Ring Two"   ?: Item
 }   
 
+// export interface Item {
+//     cost: number,
+//     date: Date,
+//     name: string,
+//     type: string,
+//     _id: string,
+//     rarity: number,
+//     isOwned?: boolean
+// }
+
 function CharacterEquipment(){
     
     return (
         <Card className='loadout-container'
             sx={{
                 backgroundColor: "rgba(249, 249, 249, 0.4)",
-                boxShadow: 1    
+                boxShadow: 1,
             }}
         >
-            {/* equipped[0] */}
-            <ItemCard name="Head" iconId="helmet" />
+            <ItemCard item={{name: "Helmet", type: "Platinum", rarity: 5 }} />
 
             <div className="item-row-container">
                 <ItemCard />
                 {/* [1, 2] */}
-                <ItemCard name="Chest" iconId="vest" />
-                <ItemCard name="Right Hand" iconId="sword" />
+                <ItemCard item={{name: "Chest", type: "Gold", rarity: 1 }} />
+                <ItemCard  item={{name: "Sword", type: "Bronze", rarity: 3 }} />
             </div>
             {/* [3] */}
             <ItemCard name="Boots" iconId="boot-stomp" />
             <div className="item-row-container">
                 {/* [4, 5, 6] */}
                 <ItemCard name="Amulet" iconId="crowned-heart" />
-                <ItemCard name="Ring" iconId="fire-ring" />
+                <ItemCard item={{name: "Ring", type: "Silver", rarity: 2 }}  />
                 <ItemCard name="Ring" iconId="fire-ring" />
             </div>
         </Card>

@@ -1,9 +1,9 @@
 export interface Item {
-    cost: number,
-    date: Date,
+    cost?: number,
+    date?: Date,
     name: string,
     type: string,
-    _id: string,
+    _id?: string,
     rarity: number,
     isOwned?: boolean
 }
